@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -42,7 +43,7 @@ class HomeScreen : Screen {
         val viewModel = navigator.koinNavigatorScreenModel<GOFViewModel>()
         val population = viewModel.population
         val rowSize by viewModel.rowSize.collectAsState()
-
+        val lifeState by viewModel.lifeState.collectAsState()
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -71,6 +72,34 @@ class HomeScreen : Screen {
 
             Spacer(modifier = Modifier.padding(16.dp))
 
+
+            Row {
+                Button(onClick = {
+                    viewModel.simulate()
+
+                }) {
+                    Text("Start")
+                }
+
+
+                Button(onClick = {
+                    viewModel.edit()
+
+                }) {
+                    Text("Edit")
+                }
+
+
+                Button(onClick = {
+                    viewModel.reset()
+                }) {
+                    Text("Reset")
+                }
+            }
+
+
+            Spacer(modifier = Modifier.padding(16.dp))
+
             LazyVerticalGrid(
                 columns = GridCells.Fixed(rowSize),
                 modifier = Modifier.fillMaxSize().border(1.dp, Color.Gray)
@@ -85,6 +114,8 @@ class HomeScreen : Screen {
                     }
                 }
             }
+
+
         }
     }
 }
