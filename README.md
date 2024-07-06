@@ -15,6 +15,10 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
   - shared UI
 
 
+## Todo
+-[] Improve performance
+-[] Responsive UI for all platforms
+-[] Add Kotlin/wasm for web
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
