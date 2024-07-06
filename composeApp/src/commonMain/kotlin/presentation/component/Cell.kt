@@ -21,7 +21,7 @@ fun Cell(
     Box(
         modifier =
         modifier
-            .size(16.dp)
+            .size(10.dp)
             .background(if (isActive) Color.White else Color.Black)
             .border(1.dp, Color.Gray)
             .clickable {

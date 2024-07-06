@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 typealias CellData = Triple<Int, Int, Boolean>
 
-const val DEFAULT_GRID_SIZE = 25
+const val DEFAULT_GRID_SIZE = 40
 
 class GOFViewModel : ScreenModel {
 
@@ -23,7 +23,7 @@ class GOFViewModel : ScreenModel {
     var rowSize = MutableStateFlow(DEFAULT_GRID_SIZE)
         private set
     private var colSize = MutableStateFlow(DEFAULT_GRID_SIZE)
-    private var speed = MutableStateFlow(1000L)
+    private var speed = MutableStateFlow(500L)
 
     private var simulationJob: Job? = null
 
@@ -104,7 +104,6 @@ class GOFViewModel : ScreenModel {
 
 
     private fun startSimulation() {
-        println("start simulation called")
         simulationJob = screenModelScope.launch(Dispatchers.Default) {
             while (true) {
                 nextGeneration()

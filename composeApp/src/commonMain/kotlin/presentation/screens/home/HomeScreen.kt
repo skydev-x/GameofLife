@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -59,7 +60,7 @@ class HomeScreen : Screen {
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(16.dp),
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -74,7 +75,7 @@ class HomeScreen : Screen {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(16.dp))
+            Spacer(modifier = Modifier.padding(8.dp))
 
 
             Row(
@@ -105,14 +106,24 @@ class HomeScreen : Screen {
                 }
             }
 
+            SliderPicker(
+                label = "Speed",
+                initial = 500f,
+                range = 200f..5000f,
+                steps = 10
+            ) {
+                viewModel.onSpeedUpdate(it)
+            }
 
-            Spacer(modifier = Modifier.padding(16.dp))
+            Spacer(modifier = Modifier.padding(8.dp))
 
 
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(rowSize),
-                modifier = Modifier.size(rowSize.times(16.dp)).border(1.dp, Color.Gray)
+                modifier = Modifier
+                    .size(rowSize.times(10.dp))
+                    .border(1.dp, Color.Gray)
             ) {
                 items(population, key = { "${it.first}-${it.second}-${it.third}" }) {
                     Cell(
@@ -127,16 +138,6 @@ class HomeScreen : Screen {
                 }
             }
 
-            Spacer(modifier = Modifier.padding(16.dp))
-
-            SliderPicker(
-                label = "Speed",
-                initial = 500f,
-                range = 200f..5000f,
-                steps = 10
-            ) {
-                viewModel.onSpeedUpdate(it)
-            }
 
         }
     }
