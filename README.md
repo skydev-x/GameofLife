@@ -5,6 +5,8 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 - It is a Simple Kotlin Multiplatform/ Compose Multiplatform app demonstrating shared UI and Data for multiplatform
 - App is based on John Conway's Game of Life cellular automaton simulation.
 
+https://github.com/skydev-x/GameofLife/assets/87947328/b204e958-97e0-4cee-a04e-caf7c2ee466f
+
 ## Libraries used
 - [Voyager](https://voyager.adriel.cafe/) 
   - for screen view model
