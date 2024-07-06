@@ -1,4 +1,4 @@
-package presentation.screens.settings
+package presentation.screens.info
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import presentation.component.BulletedList
 
 
-class SettingScreen : Screen {
+class InfoScreen : Screen {
 
     @Composable
     override fun Content() {

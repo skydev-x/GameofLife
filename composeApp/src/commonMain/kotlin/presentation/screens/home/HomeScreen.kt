@@ -20,7 +20,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,7 +34,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import presentation.component.Cell
 import presentation.component.SliderPicker
-import presentation.screens.settings.SettingScreen
+import presentation.screens.info.InfoScreen
 import presentation.viewModels.GOFViewModel
 import presentation.viewModels.LifeState
 
@@ -69,7 +68,7 @@ class HomeScreen : Screen {
                     style = MaterialTheme.typography.h5
                 )
                 IconButton(onClick = {
-                    navigator.push(SettingScreen())
+                    navigator.push(InfoScreen())
                 }) {
                     Icon(imageVector = Icons.Default.Info, contentDescription = null)
                 }
