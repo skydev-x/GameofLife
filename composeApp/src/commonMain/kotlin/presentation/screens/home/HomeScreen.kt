@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -25,14 +26,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinNavigatorScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import presentation.component.Cell
+import presentation.component.SliderPicker
 import presentation.screens.settings.SettingScreen
 import presentation.viewModels.GOFViewModel
+import presentation.viewModels.LifeState
 
 class HomeScreen : Screen {
 
@@ -73,7 +77,11 @@ class HomeScreen : Screen {
             Spacer(modifier = Modifier.padding(16.dp))
 
 
-            Row {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Button(onClick = {
                     viewModel.simulate()
 
@@ -102,7 +110,7 @@ class HomeScreen : Screen {
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(rowSize),
-                modifier = Modifier.fillMaxSize().border(1.dp, Color.Gray)
+                modifier = Modifier.wrapContentSize().border(1.dp, Color.Gray)
             ) {
                 items(population, key = { "${it.first}-${it.second}-${it.third}" }) {
                     Cell(
@@ -110,11 +118,23 @@ class HomeScreen : Screen {
                         row = it.first,
                         column = it.second
                     ) { row, col ->
-                        viewModel.activeCell(row, col)
+                        if (lifeState !is LifeState.Simulating) {
+                            viewModel.activeCell(row, col)
+                        }
                     }
                 }
             }
 
+            Spacer(modifier = Modifier.padding(16.dp))
+
+            SliderPicker(
+                label = "Speed",
+                initial = 500f,
+                range = 200f..5000f,
+                steps = 10
+            ) {
+                viewModel.onSpeedUpdate(it)
+            }
 
         }
     }

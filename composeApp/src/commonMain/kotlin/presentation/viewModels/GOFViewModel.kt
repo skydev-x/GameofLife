@@ -20,10 +20,8 @@ class GOFViewModel : ScreenModel {
 
     var rowSize = MutableStateFlow(25)
         private set
-    var colSize = MutableStateFlow(25)
-        private set
-    var speed = MutableStateFlow(1000L)
-        private set
+    private var colSize = MutableStateFlow(25)
+    private var speed = MutableStateFlow(1000L)
 
     private var simulationJob: Job? = null
 
@@ -49,6 +47,11 @@ class GOFViewModel : ScreenModel {
         simulationJob = null
         initPopulation()
     }
+
+    fun onSpeedUpdate(new: Float) {
+        speed.value = new.toLong()
+    }
+
 
     init {
         initPopulation()
@@ -129,7 +132,6 @@ class GOFViewModel : ScreenModel {
                 nextPopulation[get1DIndex(cell.first, cell.second)] =
                     CellData(cell.first, cell.second, fate)
             }
-            println(nextPopulation)
             _population.clear()
             _population.addAll(nextPopulation)
         }
