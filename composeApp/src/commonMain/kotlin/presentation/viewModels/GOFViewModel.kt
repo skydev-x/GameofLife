@@ -12,15 +12,17 @@ import kotlinx.coroutines.withContext
 
 typealias CellData = Triple<Int, Int, Boolean>
 
+const val DEFAULT_GRID_SIZE = 25
+
 class GOFViewModel : ScreenModel {
 
 
     private val _population = mutableStateListOf<CellData>()
     val population get() = _population
 
-    var rowSize = MutableStateFlow(25)
+    var rowSize = MutableStateFlow(DEFAULT_GRID_SIZE)
         private set
-    private var colSize = MutableStateFlow(25)
+    private var colSize = MutableStateFlow(DEFAULT_GRID_SIZE)
     private var speed = MutableStateFlow(1000L)
 
     private var simulationJob: Job? = null
@@ -82,7 +84,6 @@ class GOFViewModel : ScreenModel {
     }
 
 
-    // GOF
     private val directions = listOf(
         -1 to -1, -1 to 0, -1 to 1,
         0 to -1, 0 to 1,
